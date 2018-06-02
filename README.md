@@ -1,3 +1,3 @@
 
-#### whipFTP Mac Version:
-+ Under progress, does not work yet.
+#### whipFTP with Mac support:
++ Under progress, does not work on the Mac yet.
