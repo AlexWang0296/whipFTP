@@ -8,6 +8,8 @@ pip.main(['install', 'paramiko'])
 
 pip.main(['install', 'psutil'])
 
+pip.main(['install', 'Pillow'])
+
 if(platform.system() == 'Windows'):
     pip.main(['install', 'pypiwin32'])
 else:
