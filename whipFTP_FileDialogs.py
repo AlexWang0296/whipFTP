@@ -11,7 +11,7 @@ import psutil
 from tkinter import *
 from tkinter import font
 from tkinter import ttk
-from tkinter import PhotoImage
+from PIL import ImageTk, Image
 from tkinter import messagebox
 from TkDND_wrapper import *
 if(platform.system() is 'Windows'):
@@ -652,10 +652,10 @@ class open_file_dialog:
         os.chdir(dname)
 
        #Load all icons
-        self.folder_icon = PhotoImage(file='Icons/folder_big.png')
-        self.textfile_icon = PhotoImage(file='Icons/textfile_big.png')
-        self.up_icon = PhotoImage(file='Icons/up_small.png')
-        self.dnd_glow_icon = PhotoImage(file='Icons_glow/gotopath_large_glow.png')
+        self.folder_icon = ImageTk.PhotoImage(Image.open('Icons/folder_big.png'))
+        self.textfile_icon = ImageTk.PhotoImage(Image.open('Icons/textfile_big.png'))
+        self.up_icon = ImageTk.PhotoImage(Image.open('Icons/up_small.png'))
+        self.dnd_glow_icon = ImageTk.PhotoImage(Image.open('Icons_glow/gotopath_large_glow.png'))
 
        #Create a new dialog box window and set minimum size
         self.open_file_dialog_window = Toplevel(master)
