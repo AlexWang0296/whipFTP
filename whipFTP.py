@@ -106,14 +106,16 @@ class app:
 
        #Set theme and style
         s = ttk.Style()
-        s.theme_use('Arc')
+
+        if(platform.system() != 'Darwin'):
+            s.theme_use('Arc')
+
+            if((len(sys.argv) == 2 and sys.argv[1] == 'white') or platform.system() == 'Windows'):
+                s.configure('TFrame', background = 'white')
+                s.configure('TLabel', background = 'white')
+                s.configure('TCombobox', background = 'white')
 
         s.configure('Red.TLabel', foreground = 'Red')
-
-        if((len(sys.argv) == 2 and sys.argv[1] == 'white') or platform.system() == 'Windows'):
-            s.configure('TFrame', background = 'white')
-            s.configure('TLabel', background = 'white')
-            s.configure('TCombobox', background = 'white')
 
        #Create frame for toolbar buttons
         self.toolbar = ttk.Frame(master)
@@ -440,7 +442,7 @@ class app:
        #Calculate scroll region for scroll bar
         if (y+1)*35 < self.canvas_height:
             scroll_region_y = self.canvas_height - 1
-            self.vbar.configure(style = 'Whitehide.TScrollbar')
+            #self.vbar.configure(style = 'Whitehide.TScrollbar')
             self.vbar.bind('<Motion>', lambda event, arg = '': self.update_status(event, arg)) 
         else:
             scroll_region_y = ((y+1)*35)+13
@@ -1180,7 +1182,8 @@ if(platform.system() is 'Windows'):
 else:
     arc_theme_path = (dname+'/Theme')
     tkdnd_path = (dname+'/TkDND')
-root.tk.eval('lappend auto_path {%s}' % arc_theme_path)
+if(platform.system() != 'Darwin'):
+    root.tk.eval('lappend auto_path {%s}' % arc_theme_path)
 root.tk.eval('lappend auto_path {%s}' % tkdnd_path)
 root.tk.eval('package require tkdnd')
 #Queue for handling threads
